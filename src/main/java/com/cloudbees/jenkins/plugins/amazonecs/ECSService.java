@@ -423,7 +423,7 @@ public class ECSService extends BaseAWSService {
         if (template.getAgentContainerName() != null) {
             agentContainerName = template.getAgentContainerName();
 
-            if (!taskDefinition.getContainerDefinitions().stream().anyMatch(d -> d.getName() == agentContainerName)) {
+            if (!taskDefinition.getContainerDefinitions().stream().anyMatch(d -> d.getName().equals(agentContainerName))) {
                 LOGGER.log(Level.SEVERE, "Could not find agent container name: {0} for template: {1}", new Object[] {agentContainerName, template.getDisplayName()});
                 throw new RuntimeException("Could not find agent container name: " + agentContainerName);
             }
